@@ -35,7 +35,10 @@ object AppLocale {
      * the [Locale] in the [supportedLocales] which is closest to our [desiredLocale].
      * To determine the closest [Locale] we first search for [Locale]s with the same language
      * and variant. If none exists, we take the first one from the [supportedLocales] with the
-     * same language, if none exits either we just take the [Locale.getDefault].
+     * same language. If no locale with the same language exists we just take the first of the
+     * [supportedLocales].
+     *
+     * If no [supportedLocales] are defined we just assume the app supports every [Locale].
      */
     @JvmStatic
     var desiredLocale: Locale = Locale.getDefault()
@@ -58,7 +61,7 @@ object AppLocale {
             supportedLocales.find { it == desiredLocale }
                     ?: supportedLocales.find { sameLanguage(it) && sameVariant(it) }
                     ?: supportedLocales.find { sameLanguage(it) }
-                    ?: Locale.getDefault()
+                    ?: supportedLocales.first()
 
     private fun sameVariant(locale: Locale) = locale.variant == desiredLocale.variant
 
