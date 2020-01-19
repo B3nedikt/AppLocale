@@ -1,0 +1,24 @@
+ext {
+    bintrayRepo = 'applocale'
+    bintrayName = 'applocale'
+
+    publishedGroupId = 'dev.b3nedikt.applocale'
+    artifact = 'applocale'
+    libraryVersion = '1.0.0'
+
+    libraryName = 'AppLocale'
+    libraryDescription = 'AppLocale is a android library to update the app language dynamically.'
+    siteUrl = 'https://github.com/B3nedikt/applocale'
+    gitUrl = 'https://github.com/B3nedikt/applocale.git'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    developerId = 'b3nedikt'
+    developerName = 'Benedikt Löbbecke'
+    developerEmail = 'mail@b3nedikt.dev'
+    organization = 'b3nedikt.dev'
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
