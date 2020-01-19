@@ -5,7 +5,7 @@
 ## applocale 1.0.0
 AppLocale is a android library to update the app language dynamically.
 
-### 1. Add dependency
+### 1. Add dependencies
 ```groovy
 implementation 'io.github.inflationx:viewpump:2.0.3'
 
@@ -18,16 +18,31 @@ implementation 'dev.b3nedikt.applocale:applocale:1.0.0'
 Initialize AppLocale  in your Application class:
 ```kotlin
 
-        // The languages supported by our app, normally the ones we have strings.xml files for 
-        // in the resources
-        AppLocale.supportedLocales = listOf(Locale.ENGLISH, Locale.French)
+// The languages supported by our app, normally the ones we have strings.xml files for 
+// in the resources
+AppLocale.supportedLocales = listOf(Locale.ENGLISH, Locale.French)
 
-        // To dynamically update views we need want to intercept view inflation and update
-        // the text of each view. The libraries ViewPump and reword do exactly that when setup
-        // like this:
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(RewordInterceptor)
-                .build()
+// To dynamically update views we need want to intercept view inflation and update
+// the text of each view. The libraries ViewPump and reword do exactly that when setup
+// like this:
+ViewPump.init(ViewPump.builder()
+        .addInterceptor(RewordInterceptor)
+        .build()
+```
+
+### 2. Add to the base activity
+If the app has a base activity, this can go there, otherwise it needs to be added to every activity:
+```kotlin
+abstract class BaseActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(AppLocale.wrap(newBase)))
+    }
+
+    override fun getResources(): Resources {
+        return baseContext.resources
+    }
+}
 ```
 
 ### 3. Update the app language
