@@ -48,12 +48,12 @@ abstract class BaseActivity : AppCompatActivity() {
 ### 3. Update the app language
 For example update all views in the current activity:
 ```kotlin
-AppLocale.setDesiredLocale(Locale.French);
+AppLocale.desiredLocale = AppLocale.supportedLocales[position]
 
 // If we want to update the app language without restarting the activity,
 // we need to perform the update of the texts manually:
-final View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
-Reword.reword(rootView);
+val rootView = window.decorView.findViewById<ContentFrameLayout>(android.R.id.content)
+Reword.reword(rootView)
 ```
 
 ## License

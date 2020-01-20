@@ -3,9 +3,9 @@
 set -ex
 
 # Lib constants
-REPO="git@github.com:b3nedikt/reword.git"
-GROUP_ID="com.b3nedikt.reword"
-ARTIFACT_ID="reword"
+REPO="git@github.com:b3nedikt/applocale.git"
+GROUP_ID="com.b3nedikt.applocale"
+ARTIFACT_ID="applocale"
 VERSION="1.0.0"
 
 # Javadoc constants
