@@ -46,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
 ```
 
 ### 3. Update the app language
-For example update all views in the current activity:
+Now we can just set the desiredLocale to the Locale we want our app to use:
 ```kotlin
 AppLocale.desiredLocale = AppLocale.supportedLocales[position]
 
