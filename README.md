@@ -48,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
 ### 3. Update the app language
 Now we can just set the desiredLocale to the Locale we want our app to use:
 ```kotlin
-AppLocale.desiredLocale = AppLocale.supportedLocales[position]
+AppLocale.desiredLocale = Locale.FRENCH
 
 // If we want to update the app language without restarting the activity,
 // we need to perform the update of the texts manually:
