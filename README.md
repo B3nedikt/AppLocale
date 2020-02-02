@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.0.0) ](https://bintray.com/b3nedikt/applocale/applocale/1.0.0/link)
+[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.1.0) ](https://bintray.com/b3nedikt/applocale/applocale/1.1.0/link)
 [![Build Status](https://travis-ci.org/B3nedikt/applocale.svg?branch=master)](https://travis-ci.org/B3nedikt/applocale)
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 
@@ -7,11 +7,14 @@ AppLocale is a android library to update the app language dynamically.
 
 ### 1. Add dependencies
 ```groovy
+// Needed to intercept view inflation
 implementation 'io.github.inflationx:viewpump:2.0.3'
 
+// Allows to update the text of views at runtime without recreating the activity
 implementation 'dev.b3nedikt.reword:reword:1.0.0'
 
-implementation 'dev.b3nedikt.applocale:applocale:1.0.0'
+// Manages the Locale used by the app
+implementation 'dev.b3nedikt.applocale:applocale:1.1.0'
 ```
 
 ### 2. Initialize
@@ -22,7 +25,10 @@ Initialize AppLocale  in your Application class:
 // in the resources
 AppLocale.supportedLocales = listOf(Locale.ENGLISH, Locale.French)
 
-// To dynamically update views we need want to intercept view inflation and update
+// Optional: Persist changes to the desiredLocale to sharedPreferences
+AppLocale.appLocaleRepository = SharedPrefsAppLocaleRepository(this)
+
+// To dynamically update views we need to intercept view inflation and update
 // the text of each view. The libraries ViewPump and reword do exactly that when setup
 // like this:
 ViewPump.init(ViewPump.builder()

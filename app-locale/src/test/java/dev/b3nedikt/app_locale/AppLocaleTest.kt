@@ -4,10 +4,10 @@ import org.amshove.kluent.shouldBe
 import org.junit.Test
 import java.util.*
 
-class AppLocaleTest{
+class AppLocaleTest {
 
     @Test()
-    fun desiredLocale_InSupportedLocales(){
+    fun desiredLocale_InSupportedLocales() {
 
         // Given a list of supported locales
         AppLocale.supportedLocales = listOf(Locale.GERMAN)
@@ -20,7 +20,7 @@ class AppLocaleTest{
     }
 
     @Test()
-    fun desiredLocale_NotInSupportedLocales(){
+    fun desiredLocale_NotInSupportedLocales() {
 
         // Given a list of supported locales
         AppLocale.supportedLocales = listOf(Locale.ENGLISH)
@@ -33,7 +33,7 @@ class AppLocaleTest{
     }
 
     @Test()
-    fun desiredLocale_EmptySupportedLocales(){
+    fun desiredLocale_EmptySupportedLocales() {
 
         // Given a list of supported locales
         AppLocale.supportedLocales = listOf()

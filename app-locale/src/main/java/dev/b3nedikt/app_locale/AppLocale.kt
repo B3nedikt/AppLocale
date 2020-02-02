@@ -14,7 +14,21 @@ object AppLocale {
      * If the [desiredLocale] has not been changed yet.
      */
     @JvmStatic
-    var isInitial = false
+    var isInitial = true
+
+    /**
+     * A [AppLocaleRepository] to persist the [supportedLocales], the [currentLocale] and
+     * the [desiredLocale].
+     */
+    @JvmStatic
+    var appLocaleRepository: AppLocaleRepository? = null
+
+    /**
+     * The [localeMatchingStrategy] used to determine the new [currentLocale] after a change
+     * to the [desiredLocale].
+     */
+    @JvmStatic
+    var localeMatchingStrategy: LocaleMatchingStrategy = DefaultLocaleMatchingStrategy()
 
     /**
      * The [Locale]s supported by the app. Usually these are all [Locale]s for which
@@ -31,21 +45,20 @@ object AppLocale {
 
     /**
      * The locale which should ideally be used by the app.
-     * If the locale is in the [supportedLocales], it will be used, otherwise we will use
-     * the [Locale] in the [supportedLocales] which is closest to our [desiredLocale].
-     * To determine the closest [Locale] we first search for [Locale]s with the same language
-     * and variant. If none exists, we take the first one from the [supportedLocales] with the
-     * same language. If no locale with the same language exists we just take the first of the
-     * [supportedLocales].
      *
-     * If no [supportedLocales] are defined we just assume the app supports every [Locale].
+     * Setting a new [desiredLocale] will lead to a new [currentLocale] as defined by the
+     * [localeMatchingStrategy].
      */
     @JvmStatic
-    var desiredLocale: Locale = Locale.getDefault()
+    var desiredLocale: Locale =
+            appLocaleRepository?.desiredLocale
+                    ?: Locale.getDefault()
         set(value) {
             field = value
             isInitial = false
-            currentLocale = getLocale()
+            currentLocale = localeMatchingStrategy.determineNewCurrentLocale()
+
+            appLocaleRepository?.desiredLocale = value
         }
 
     /**
@@ -53,17 +66,4 @@ object AppLocale {
      */
     @JvmStatic
     fun wrap(baseContext: Context): ContextWrapper = AppLocaleContextWrapper(baseContext)
-
-    private fun getLocale() =
-            if (supportedLocales.isEmpty()) desiredLocale else getLocaleFromSupportedLocals()
-
-    private fun getLocaleFromSupportedLocals() =
-            supportedLocales.find { it == desiredLocale }
-                    ?: supportedLocales.find { sameLanguage(it) && sameVariant(it) }
-                    ?: supportedLocales.find { sameLanguage(it) }
-                    ?: supportedLocales.first()
-
-    private fun sameVariant(locale: Locale) = locale.variant == desiredLocale.variant
-
-    private fun sameLanguage(locale: Locale) = locale.language == desiredLocale.language
 }
