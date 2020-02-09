@@ -8,7 +8,8 @@ import java.util.*
 interface AppLocaleRepository {
 
     /**
-     * The locale which should ideally be used by the app.
+     * The locale which should ideally be used by the app, or null if the [Locale.getDefault]
+     * should be used.
      */
     var desiredLocale: Locale?
 }
