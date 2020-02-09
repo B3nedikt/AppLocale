@@ -15,17 +15,26 @@ class SharedPrefsAppLocaleRepository(private val context: Context) : AppLocaleRe
     }
 
     override var desiredLocale: Locale?
-        get() = sharedPrefs
-                .getString(LANGUAGE_TAG_SHARED_PREFS_KEY, null)
-                ?.let { LocaleUtil.fromLanguageTag(it) }
-        set(value) {
-            value?.let {
-                sharedPrefs
-                        .edit()
-                        .putString(LANGUAGE_TAG_SHARED_PREFS_KEY, LocaleUtil.toLanguageTag(it))
-                        .apply()
-            }
-        }
+        get() = loadLocale()
+        set(value) =
+            if (value != null) saveLocale(value) else resetLocale()
+
+    private fun saveLocale(locale: Locale) =
+            sharedPrefs
+                    .edit()
+                    .putString(LANGUAGE_TAG_SHARED_PREFS_KEY, LocaleUtil.toLanguageTag(locale))
+                    .apply()
+
+    private fun loadLocale(): Locale? =
+            sharedPrefs
+                    .getString(LANGUAGE_TAG_SHARED_PREFS_KEY, null)
+                    ?.let { LocaleUtil.fromLanguageTag(it) }
+
+    private fun resetLocale() =
+            sharedPrefs
+                    .edit()
+                    .remove(LANGUAGE_TAG_SHARED_PREFS_KEY)
+                    .apply()
 
     private companion object {
         private const val APP_LOCALE_SHARED_PREFS = "dev.b3nedikt.app_locale.LanguageTag"
