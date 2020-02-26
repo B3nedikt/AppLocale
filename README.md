@@ -1,8 +1,8 @@
-[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.1.0) ](https://bintray.com/b3nedikt/applocale/applocale/1.1.0/link)
+[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.2.0) ](https://bintray.com/b3nedikt/applocale/applocale/1.2.0/link)
 [![Build Status](https://travis-ci.org/B3nedikt/applocale.svg?branch=master)](https://travis-ci.org/B3nedikt/applocale)
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 
-## App Locale 1.1.0
+## App Locale 1.2.0
 AppLocale is a android library to update the app language dynamically.
 
 ### 1. Add dependencies
@@ -14,7 +14,7 @@ implementation 'io.github.inflationx:viewpump:2.0.3'
 implementation 'dev.b3nedikt.reword:reword:1.0.0'
 
 // Manages the Locale used by the app
-implementation 'dev.b3nedikt.applocale:applocale:1.1.0'
+implementation 'dev.b3nedikt.applocale:applocale:1.2.0'
 ```
 
 ### 2. Initialize
