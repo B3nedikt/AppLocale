@@ -17,6 +17,7 @@ internal object LocaleUtil {
         if (language.isNotEmpty() && country.isNotEmpty()) {
             return "$language-$country"
         }
+
         return language
     }
 

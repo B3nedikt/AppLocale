@@ -22,9 +22,9 @@ internal class DefaultLocaleMatchingStrategy : LocaleMatchingStrategy {
                     ?: supportedLocales.find { sameLanguage(it) }
                     ?: supportedLocales.first()
 
-    private fun sameVariant(locale: Locale) = locale.variant == desiredLocale.variant
-
     private fun sameLanguage(locale: Locale) = locale.language == desiredLocale.language
 
     private fun sameCountry(locale: Locale) = locale.country == desiredLocale.country
+
+    private fun sameVariant(locale: Locale) = locale.variant == desiredLocale.variant
 }
