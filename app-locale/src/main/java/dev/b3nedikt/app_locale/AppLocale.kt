@@ -54,12 +54,34 @@ object AppLocale {
             appLocaleRepository?.desiredLocale
                     ?: Locale.getDefault()
         set(value) {
+            val oldLocale = currentLocale
+
             field = value
             isInitial = false
             currentLocale = localeMatchingStrategy.determineNewCurrentLocale()
 
+            if (currentLocale != oldLocale) {
+                listeners.forEach(LocaleChangedListener::onLocaleChanged)
+            }
+
             appLocaleRepository?.desiredLocale = value
         }
+
+    private val listeners = mutableSetOf<LocaleChangedListener>()
+
+    /**
+     * Add a listener for changes to the [currentLocale]
+     */
+    fun addLocaleChangedListener(listener: LocaleChangedListener) {
+        listeners.add(listener)
+    }
+
+    /**
+     * Remove a listener for changes to the [currentLocale]
+     */
+    fun removeLocaleChangedListener(listener: LocaleChangedListener) {
+        listeners.add(listener)
+    }
 
     /**
      * Needed to wrap the original activity context.
