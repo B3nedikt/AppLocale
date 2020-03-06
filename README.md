@@ -7,12 +7,6 @@ AppLocale is a android library to update the app language dynamically.
 
 ### 1. Add dependencies
 ```groovy
-// Needed to intercept view inflation
-implementation 'io.github.inflationx:viewpump:2.0.3'
-
-// Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:1.0.0'
-
 // Manages the Locale used by the app
 implementation 'dev.b3nedikt.applocale:applocale:1.2.1'
 ```
@@ -55,12 +49,30 @@ abstract class BaseActivity : AppCompatActivity() {
 Now we can just set the desiredLocale to the Locale we want our app to use:
 ```kotlin
 AppLocale.desiredLocale = Locale.FRENCH
+```
+When the activity gets restarted, all texts will be localized using the new Locale.
 
+## Update the app language without restarting the activity
+If you want to change the apps Locale without restarting the activity,
+you need to add the following additional dependencies:
+```groovy
+// Needed to intercept view inflation
+implementation 'io.github.inflationx:viewpump:2.0.3'
+
+// Allows to update the text of views at runtime without recreating the activity
+implementation 'dev.b3nedikt.reword:reword:1.0.0'
+```
+After setting the new locale you need to call reword
+to update all views which have been inflated from xml:
+```kotlin
 // If we want to update the app language without restarting the activity,
 // we need to perform the update of the texts manually:
 val rootView = window.decorView.findViewById<ContentFrameLayout>(android.R.id.content)
 Reword.reword(rootView)
 ```
+If you have changed the texts of views in code, you need to update these
+texts manually of course.
+
 
 ## License
 <pre>

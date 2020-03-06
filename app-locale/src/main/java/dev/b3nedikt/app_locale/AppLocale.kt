@@ -72,6 +72,7 @@ object AppLocale {
     /**
      * Add a listener for changes to the [currentLocale]
      */
+    @JvmStatic
     fun addLocaleChangedListener(listener: LocaleChangedListener) {
         listeners.add(listener)
     }
@@ -79,6 +80,7 @@ object AppLocale {
     /**
      * Remove a listener for changes to the [currentLocale]
      */
+    @JvmStatic
     fun removeLocaleChangedListener(listener: LocaleChangedListener) {
         listeners.add(listener)
     }
