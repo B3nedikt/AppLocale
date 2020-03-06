@@ -14,20 +14,13 @@ implementation 'dev.b3nedikt.applocale:applocale:1.2.2'
 ### 2. Initialize
 Initialize AppLocale  in your Application class:
 ```kotlin
-
 // The languages supported by our app, normally the ones we have strings.xml files for 
-// in the resources
+// in the resources. If you dont set this, it will be assumed the app supports every language
+// set programmatically using this lib.
 AppLocale.supportedLocales = listOf(Locale.ENGLISH, Locale.French)
 
 // Optional: Persist changes to the desiredLocale to sharedPreferences
 AppLocale.appLocaleRepository = SharedPrefsAppLocaleRepository(this)
-
-// To dynamically update views we need to intercept view inflation and update
-// the text of each view. The libraries ViewPump and reword do exactly that when setup
-// like this:
-ViewPump.init(ViewPump.builder()
-        .addInterceptor(RewordInterceptor)
-        .build()
 ```
 
 ### 2. Add to the base activity
@@ -61,6 +54,15 @@ implementation 'io.github.inflationx:viewpump:2.0.3'
 
 // Allows to update the text of views at runtime without recreating the activity
 implementation 'dev.b3nedikt.reword:reword:1.0.0'
+```
+Initialize ViewPump & Reword in the application class:
+```kotlin
+// To dynamically update views we need to intercept view inflation and update
+// the text of each view. The libraries ViewPump and reword do exactly that when setup
+// like this:
+ViewPump.init(ViewPump.builder()
+        .addInterceptor(RewordInterceptor)
+        .build()
 ```
 After setting the new locale you need to call reword
 to update all views which have been inflated from xml:
