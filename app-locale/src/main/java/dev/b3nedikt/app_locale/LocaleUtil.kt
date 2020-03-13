@@ -15,7 +15,7 @@ internal object LocaleUtil {
         val country = locale.country
 
         if (language.isNotEmpty() && country.isNotEmpty()) {
-            return "$language-$country"
+            return "$language-${country}"
         }
 
         return language

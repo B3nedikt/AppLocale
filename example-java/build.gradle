@@ -32,7 +32,4 @@ dependencies {
     implementation deps.viewPump
     implementation deps.reword
 }
-repositories {
-    mavenCentral()
-}
 
