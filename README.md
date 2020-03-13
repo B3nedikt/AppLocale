@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.2.2) ](https://bintray.com/b3nedikt/applocale/applocale/1.2.2/link)
+[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=1.2.3) ](https://bintray.com/b3nedikt/applocale/applocale/1.2.3/link)
 [![Build Status](https://travis-ci.org/B3nedikt/applocale.svg?branch=master)](https://travis-ci.org/B3nedikt/applocale)
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 
