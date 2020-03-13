@@ -57,8 +57,6 @@ bintray {
         repo = bintrayRepo
         name = bintrayName
         desc = libraryDescription
-
-        // If the repository is hosted by an organization instead of personal account.
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = allLicenses
@@ -75,8 +73,8 @@ bintray {
 
             mavenCentralSync {
                 sync = true
-                user = localProperty('userToken') //OSS user token
-                password = localProperty('paasword') //OSS user password
+                user = localProperty('userToken') // OSS user token
+                password = localProperty('paasword') // OSS user password
             }
         }
     }

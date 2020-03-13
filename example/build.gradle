@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -30,7 +30,4 @@ dependencies {
     implementation deps.kotlin
     implementation deps.viewPump
     implementation deps.reword
-}
-repositories {
-    mavenCentral()
 }

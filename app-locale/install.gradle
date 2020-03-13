@@ -4,7 +4,6 @@ group = publishedGroupId // Maven Group ID for the artifact
 
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom.project {
             packaging 'aar'
             groupId publishedGroupId
@@ -38,6 +37,5 @@ install {
 
             }
         }
-
     }
 }

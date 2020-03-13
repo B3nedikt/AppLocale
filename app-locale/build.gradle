@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 
@@ -44,11 +43,6 @@ android {
 
 dependencies {
     implementation deps.kotlin
-
-    // UI libraries
-    implementation deps.appCompat
-    implementation deps.material
-    implementation deps.viewPump
 
     // Test libraries
     testImplementation deps.junit
