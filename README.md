@@ -29,11 +29,11 @@ If the app has a base activity, this can go there, otherwise it needs to be adde
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(AppLocale.wrap(newBase)))
+        super.attachBaseContext(AppLocale.wrap(newBase))
     }
 
     override fun getResources(): Resources {
-        return baseContext.resources
+        return AppLocale.wrap(baseContext).resources
     }
 }
 ```
@@ -62,7 +62,7 @@ Initialize ViewPump & Reword in the application class:
 // like this:
 ViewPump.init(ViewPump.builder()
         .addInterceptor(RewordInterceptor)
-        .build()
+        .build())
 ```
 After setting the new locale you need to call reword
 to update all views which have been inflated from xml:
