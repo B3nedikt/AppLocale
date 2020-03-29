@@ -8,8 +8,9 @@ import android.os.Build
  * Wrapped [Resources] which will be provided by AppLocale.
  */
 @Suppress("DEPRECATION")
-internal class AppLocaleResources(val res: Resources)
-    : Resources(res.assets, res.displayMetrics, res.configuration) {
+internal class AppLocaleResources(
+        private val res: Resources
+) : Resources(res.assets, res.displayMetrics, res.configuration) {
 
     @Throws(NotFoundException::class)
     override fun getString(id: Int): String {

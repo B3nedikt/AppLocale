@@ -86,8 +86,13 @@ object AppLocale {
     }
 
     /**
-     * Needed to wrap the original activity context.
+     * Wraps the context with a [ContextWrapper] which provides the [AppLocaleResources] instead
+     * of the default resources. If the provided context is already wrapped, it will be returned
+     * unchanged by this method.
      */
     @JvmStatic
-    fun wrap(baseContext: Context): ContextWrapper = AppLocaleContextWrapper(baseContext)
+    fun wrap(context: Context): Context {
+        if (context.resources is AppLocaleResources) return context
+        return AppLocaleContextWrapper(context)
+    }
 }

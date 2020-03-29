@@ -5,8 +5,7 @@ import android.content.ContextWrapper
 import android.content.res.Resources
 
 /**
- * Main Restring context wrapper which wraps the context for providing another layout inflater
- * & resources.
+ * Main AppLocale context wrapper which wraps the context for providing custom [Resources].
  */
 internal class AppLocaleContextWrapper constructor(
         base: Context
@@ -19,7 +18,7 @@ internal class AppLocaleContextWrapper constructor(
 
     override fun getResources() = res
 
-    companion object {
+    internal companion object {
 
         @JvmStatic
         fun wrap(context: Context): AppLocaleContextWrapper {
