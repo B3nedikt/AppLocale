@@ -13,6 +13,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun getResources(): Resources {
-        return baseContext.resources
+        return AppLocale.wrap(baseContext).resources
     }
 }
