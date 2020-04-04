@@ -3,10 +3,10 @@
 set -ex
 
 # Lib constants
-REPO="git@github.com:b3nedikt/applocale.git"
+REPO="git@github.com:B3nedikt/AppLocale.git"
 GROUP_ID="com.b3nedikt.applocale"
 ARTIFACT_ID="applocale"
-VERSION="1.0.0"
+VERSION="1.2.4"
 
 # Javadoc constants
 FILE_PATH="${GROUP_ID//./%2F}%2F${ARTIFACT_ID}%2F${VERSION}%2F${ARTIFACT_ID}-${VERSION}-javadoc.jar"
