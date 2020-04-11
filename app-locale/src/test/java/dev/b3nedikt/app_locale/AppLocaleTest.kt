@@ -8,7 +8,7 @@ import java.util.*
 
 class AppLocaleTest {
 
-    @Test()
+    @Test
     fun desiredLocale_InSupportedLocales() {
 
         // Given a list of supported locales
@@ -21,7 +21,7 @@ class AppLocaleTest {
         AppLocale.currentLocale shouldBe Locale.GERMAN
     }
 
-    @Test()
+    @Test
     fun desiredLocale_NotInSupportedLocales() {
 
         // Given a list of supported locales
@@ -34,7 +34,7 @@ class AppLocaleTest {
         AppLocale.currentLocale shouldBe Locale.ENGLISH
     }
 
-    @Test()
+    @Test
     fun desiredLocale_EmptySupportedLocales() {
 
         // Given a list of supported locales
@@ -47,7 +47,7 @@ class AppLocaleTest {
         AppLocale.currentLocale shouldBe Locale.GERMAN
     }
 
-    @Test()
+    @Test
     fun successfulLanguageChange_TriggersListener() {
 
         // Given the AppLocale is set to English
@@ -63,7 +63,7 @@ class AppLocaleTest {
         verify(listener).onLocaleChanged()
     }
 
-    @Test()
+    @Test
     fun failedLanguageChange_DoesNotTriggersListener() {
 
         // Given the AppLocale is set to English
@@ -78,7 +78,7 @@ class AppLocaleTest {
         verify(listener).onLocaleChanged()
     }
 
-    @Test()
+    @Test
     fun afterRemoveListener_ListenerNoLongerGetsTriggered() {
 
         // Given the AppLocale is set to English

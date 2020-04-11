@@ -6,7 +6,7 @@ import dev.b3nedikt.app_locale.AppLocale;
 import dev.b3nedikt.reword.RewordInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 
-public class SampleApplication extends Application {
+class SampleApplication extends Application {
 
     @Override
     public void onCreate() {
