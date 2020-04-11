@@ -1,7 +1,7 @@
 buildscript {
     ext.kotlin_version = '1.3.71'
     ext.dokka_version = '0.10.1'
-    ext.jacoco_version = '0.8.4'
+    ext.jacoco_version = '0.8.5'
 
     repositories {
         google()
