@@ -13,7 +13,7 @@ import java.util.*
 @Config(sdk = [Build.VERSION_CODES.P])
 class SharedPrefsAppLocaleRepositoryTest {
 
-    @Test()
+    @Test
     fun localeSaveAndRetrieve() {
 
         // Given a repository
@@ -27,7 +27,7 @@ class SharedPrefsAppLocaleRepositoryTest {
         repository2.desiredLocale shouldBe Locale.GERMAN
     }
 
-    @Test()
+    @Test
     fun initialValueIsNull() {
 
         // Given a new repository
@@ -37,7 +37,7 @@ class SharedPrefsAppLocaleRepositoryTest {
         repository.desiredLocale shouldBe null
     }
 
-    @Test()
+    @Test
     fun settingValueToNullResetsIt() {
 
         // Given a repository with the desired locale set to German
