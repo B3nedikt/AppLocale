@@ -11,7 +11,7 @@ internal class AppLocaleContextWrapper(base: Context) : ContextWrapper(base) {
 
     private val res: Resources by lazy {
         val baseResources = super.getResources()
-        AppLocaleResources(baseResources)
+        AppLocaleResources(baseResources, base)
     }
 
     override fun getResources() = res
