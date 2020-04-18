@@ -6,7 +6,7 @@ import android.os.Build
 
 
 /**
- * Wrapped [Resources] which will be provided by AppLocale.
+ * Wrapped [Resources] which will be provided by [AppLocale].
  */
 @Suppress("DEPRECATION")
 internal class AppLocaleResources(
@@ -78,13 +78,9 @@ internal class AppLocaleResources(
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             conf.setLocale(AppLocale.currentLocale)
-        } else {
-            conf.locale = AppLocale.currentLocale
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             res = context.createConfigurationContext(conf).resources
         } else {
+            conf.locale = AppLocale.currentLocale
             res.updateConfiguration(conf, res.displayMetrics)
         }
     }
