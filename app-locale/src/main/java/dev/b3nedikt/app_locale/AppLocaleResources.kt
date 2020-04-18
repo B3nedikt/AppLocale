@@ -1,5 +1,6 @@
 package dev.b3nedikt.app_locale
 
+import android.content.Context
 import android.content.res.Resources
 import android.os.Build
 
@@ -9,64 +10,65 @@ import android.os.Build
  */
 @Suppress("DEPRECATION")
 internal class AppLocaleResources(
-        private val res: Resources
+        private var res: Resources,
+        private val context: Context
 ) : Resources(res.assets, res.displayMetrics, res.configuration) {
 
     @Throws(NotFoundException::class)
     override fun getString(id: Int): String {
         setLocale()
 
-        return super.getString(id)
+        return res.getString(id)
     }
 
     @Throws(NotFoundException::class)
     override fun getString(id: Int, vararg formatArgs: Any): String {
         setLocale()
 
-        return super.getString(id, *formatArgs)
+        return res.getString(id, *formatArgs)
     }
 
     @Throws(NotFoundException::class)
     override fun getText(id: Int): CharSequence {
         setLocale()
 
-        return super.getText(id)
+        return res.getText(id)
     }
 
     override fun getText(id: Int, def: CharSequence): CharSequence {
         setLocale()
 
-        return super.getText(id, def)
+        return res.getText(id, def)
     }
 
     override fun getQuantityText(id: Int, quantity: Int): CharSequence {
         setLocale()
 
-        return super.getQuantityText(id, quantity)
+        return res.getQuantityText(id, quantity)
     }
 
     override fun getQuantityString(id: Int, quantity: Int): String {
         setLocale()
 
-        return super.getQuantityString(id, quantity)
+        return res.getQuantityString(id, quantity)
     }
 
     override fun getQuantityString(id: Int, quantity: Int, vararg formatArgs: Any?): String {
         setLocale()
 
-        return super.getQuantityString(id, quantity, *formatArgs)
+        return res.getQuantityString(id, quantity, *formatArgs)
     }
 
     override fun getStringArray(id: Int): Array<String> {
         setLocale()
 
-        return super.getStringArray(id)
+        return res.getStringArray(id)
     }
 
     override fun getTextArray(id: Int): Array<CharSequence> {
         setLocale()
 
-        return super.getTextArray(id)
+        return res.getTextArray(id)
     }
 
     private fun setLocale() {
@@ -80,7 +82,11 @@ internal class AppLocaleResources(
             conf.locale = AppLocale.currentLocale
         }
 
-        res.updateConfiguration(conf, res.displayMetrics)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            res = context.createConfigurationContext(conf).resources
+        } else {
+            res.updateConfiguration(conf, res.displayMetrics)
+        }
     }
 }
 
