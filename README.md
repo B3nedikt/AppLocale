@@ -64,7 +64,7 @@ you need to add the following additional dependencies:
 implementation 'io.github.inflationx:viewpump:2.0.3'
 
 // Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:1.0.0'
+implementation 'dev.b3nedikt.reword:reword:1.1.0'
 ```
 
 Initialize ViewPump & Reword in the application class:
