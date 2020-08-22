@@ -4,6 +4,7 @@
 [![Documentation](https://img.shields.io/badge/docs-documentation-green.svg)](https://b3nedikt.github.io/AppLocale/)
 
 ## App Locale 1.2.5
+
 AppLocale is a android library to update the app language dynamically.
 
 ### 1. Add dependency
