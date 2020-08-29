@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restring</string>
+    <string name="app_name">Reword</string>
     <string name="title">Titel.</string>
     <string name="text_view_text">TextView Text Deutsch</string>
     <string name="subtitle">Untertitel.</string>

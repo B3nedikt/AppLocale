@@ -1,4 +1,4 @@
-package com.b3nedikt.restring.example
+package com.b3nedikt.reword.example
 
 import android.app.Application
 import dev.b3nedikt.app_locale.AppLocale

@@ -1,4 +1,4 @@
-package com.b3nedikt.restring.example;
+package com.b3nedikt.reword.example;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
                 android.R.layout.simple_dropdown_item_1line, localeStrings);
 
         spinner.setAdapter(adapter);
+        spinner.setSelection(AppLocale.getSupportedLocales().indexOf(AppLocale.getCurrentLocale()));
     }
 
     @Override
