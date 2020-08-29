@@ -1,4 +1,4 @@
-package com.b3nedikt.restring.example;
+package com.b3nedikt.reword.example;
 
 import java.util.*;
 

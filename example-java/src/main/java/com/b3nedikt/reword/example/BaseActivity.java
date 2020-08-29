@@ -1,4 +1,4 @@
-package com.b3nedikt.restring.example;
+package com.b3nedikt.reword.example;
 
 import android.content.Context;
 import android.content.res.Resources;

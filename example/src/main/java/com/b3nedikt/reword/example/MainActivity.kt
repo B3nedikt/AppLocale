@@ -1,4 +1,4 @@
-package com.b3nedikt.restring.example
+package com.b3nedikt.reword.example
 
 import android.os.Bundle
 import android.view.View
@@ -21,6 +21,7 @@ class MainActivity : BaseActivity() {
                 android.R.layout.simple_dropdown_item_1line, localeStrings)
 
         spinner.adapter = adapter
+        spinner.setSelection(AppLocale.supportedLocales.indexOf(AppLocale.currentLocale))
     }
 
     override fun onResume() {
