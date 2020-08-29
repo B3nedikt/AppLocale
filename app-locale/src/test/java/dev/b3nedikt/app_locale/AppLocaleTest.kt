@@ -94,3 +94,4 @@ class AppLocaleTest {
         verify(listener).onLocaleChanged()
     }
 }
+

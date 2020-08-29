@@ -15,6 +15,13 @@ object AppLocale {
      */
     @JvmStatic
     var isInitial = true
+        get() {
+            if (appLocaleRepository?.desiredLocale != null) {
+                field = false
+            }
+            return field
+        }
+        private set
 
     /**
      * A [AppLocaleRepository] to persist the [supportedLocales], the [currentLocale] and
@@ -41,7 +48,22 @@ object AppLocale {
      * The locale currently used by the app.
      */
     @JvmStatic
-    var currentLocale: Locale = Locale.getDefault()
+    var currentLocale: Locale = Locale.ROOT
+        get() {
+
+            if (field == Locale.ROOT) {
+                val desiredLocale = appLocaleRepository?.desiredLocale
+
+                field = if (desiredLocale != null) {
+                    localeMatchingStrategy.determineNewCurrentLocale()
+                } else {
+                    Locale.getDefault()
+                }
+            }
+
+            return field
+        }
+
 
     /**
      * The locale which should ideally be used by the app.
@@ -50,9 +72,15 @@ object AppLocale {
      * [localeMatchingStrategy].
      */
     @JvmStatic
-    var desiredLocale: Locale =
-            appLocaleRepository?.desiredLocale
-                    ?: Locale.getDefault()
+    var desiredLocale: Locale = Locale.ROOT
+        get() {
+
+            if (field == Locale.ROOT) {
+                field = appLocaleRepository?.desiredLocale ?: Locale.getDefault()
+            }
+
+            return field
+        }
         set(value) {
             val oldLocale = currentLocale
 
