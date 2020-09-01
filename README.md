@@ -108,7 +108,7 @@ If you have changed the texts of views in code, you need to update these
 texts manually of course.
 
 ## App Bundle support
-If you use the new android app bunlde (aab) format to distribute your app, android
+If you use the new android app bundle (aab) format to distribute your app, android
 will strip out all languages which are not the users devices default language.
 To disable this add this to your build.gradle:
 
