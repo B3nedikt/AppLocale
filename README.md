@@ -107,6 +107,24 @@ Reword.reword(rootView)
 If you have changed the texts of views in code, you need to update these
 texts manually of course.
 
+## App Bundle support
+If you use the new android app bunlde (aab) format to distribute your app, android
+will strip out all languages which are not the users devices default language.
+To disable this add this to your build.gradle:
+
+```
+android {
+    bundle {
+        language {
+            // We want to be able to switch the locale at runtime using AppLocale!
+            enableSplit = false
+        }
+    }
+}
+```
+Alternatively load the languages dynamically using the playcore library as described in its
+[Documentation](https://developer.android.com/guide/playcore/dynamic-delivery#lang_resources).
+
 ## License
 
 ```
