@@ -3,7 +3,7 @@ ext {
     bintrayName = 'applocale'
 
     publishedGroupId = 'dev.b3nedikt.applocale'
-    artifact = 'applocale'
+    artifactId = 'applocale'
     libraryVersion = '2.0.1'
 
     libraryName = 'AppLocale'

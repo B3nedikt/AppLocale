@@ -40,7 +40,8 @@ bintray {
     user = localProperty("bintrayUser")
     key = localProperty("bintrayApiKey")
 
-    configurations = ['archives']
+    publications = ['release']
+
     pkg {
         repo = bintrayRepo
         name = bintrayName
