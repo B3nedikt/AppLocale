@@ -16,7 +16,7 @@ implementation 'dev.b3nedikt.applocale:applocale:2.0.1'
 
 ### 2. Initialize
 
-Initialize AppLocale  in your Application class:
+Initialize AppLocale in your Application class:
 
 ```kotlin
 // The languages supported by our app, normally the ones we have strings.xml files for
@@ -62,10 +62,10 @@ you need to add the following additional dependencies:
 
 ```groovy
 // Needed to intercept view inflation
-implementation 'io.github.inflationx:viewpump:2.0.3'
+implementation 'dev.b3nedikt.viewpump:viewpump:3.0.0'
 
 // Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:1.1.0'
+implementation 'dev.b3nedikt.reword:reword:2.0.0'
 ```
 
 Initialize ViewPump & Reword in the application class:
@@ -94,6 +94,24 @@ abstract class BaseActivity : AppCompatActivity() {
 }
 ```
 
+If you use fragments add this to your base fragment:
+
+```kotlin
+abstract class BaseFragment : Fragment() {
+
+    override fun onResume() {
+        super.onResume()
+
+        ViewPump.setOverwriteContext(AppLocale.wrap(requireContext()))
+    }
+
+    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+        val wrappedContext = ViewPumpContextWrapper.wrap(AppLocale.wrap(requireContext()))
+        return wrappedContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    }
+}
+```
+
 After setting the new locale you need to call reword
 to update all views which have been inflated from xml:
 
@@ -105,9 +123,12 @@ Reword.reword(rootView)
 ```
 
 If you have changed the texts of views in code, you need to update these
-texts manually of course.
+texts manually of course. Also should you use the application context somewhere to retrieve strings
+and inject it with a DI tool like koin or dagger, I would recommend wrapping it in your
+application class.
 
 ## App Bundle support
+
 If you use the new android app bundle (aab) format to distribute your app, android
 will strip out all languages which are not the users devices default language.
 To disable this add this to your build.gradle:
@@ -122,6 +143,7 @@ android {
     }
 }
 ```
+
 Alternatively load the languages dynamically using the playcore library as described in its
 [Documentation](https://developer.android.com/guide/playcore/dynamic-delivery#lang_resources).
 
