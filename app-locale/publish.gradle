@@ -4,7 +4,7 @@ ext {
 
     publishedGroupId = 'dev.b3nedikt.applocale'
     artifactId = 'applocale'
-    libraryVersion = '2.0.1'
+    libraryVersion = '2.0.2'
 
     libraryName = 'AppLocale'
     libraryDescription = 'AppLocale is a android library to update the app language dynamically.'
