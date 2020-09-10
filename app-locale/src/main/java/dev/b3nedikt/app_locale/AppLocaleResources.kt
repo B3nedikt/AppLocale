@@ -1,6 +1,5 @@
 package dev.b3nedikt.app_locale
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.*
 import android.graphics.Movie
@@ -12,8 +11,6 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import androidx.annotation.RequiresApi
-import org.xmlpull.v1.XmlPullParserException
-import java.io.IOException
 import java.io.InputStream
 
 
@@ -22,212 +19,208 @@ import java.io.InputStream
  */
 @Suppress("DEPRECATION")
 internal class AppLocaleResources(
-        private var baseResources: Resources,
-        private val context: Context
+        private val baseResources: Resources,
+        context: Context
 ) : Resources(baseResources.assets, baseResources.displayMetrics, baseResources.configuration) {
 
-    @Throws(NotFoundException::class)
+    private val resourcesDelegate = ResourcesDelegate(context, baseResources)
+
     override fun getString(id: Int): String {
-        setLocale()
-
-        return baseResources.getString(id)
+        return resourcesDelegate.getString(id)
     }
 
-    @Throws(NotFoundException::class)
     override fun getString(id: Int, vararg formatArgs: Any): String {
-        setLocale()
-
-        return baseResources.getString(id, *formatArgs)
+        return resourcesDelegate.getString(id, *formatArgs)
     }
 
-    @Throws(NotFoundException::class)
     override fun getText(id: Int): CharSequence {
-        setLocale()
-
-        return baseResources.getText(id)
+        return resourcesDelegate.getText(id)
     }
 
     override fun getText(id: Int, def: CharSequence): CharSequence {
-        setLocale()
-
-        return baseResources.getText(id, def)
+        return resourcesDelegate.getText(id, def)
     }
 
     override fun getQuantityText(id: Int, quantity: Int): CharSequence {
-        setLocale()
-
-        return baseResources.getQuantityText(id, quantity)
+        return resourcesDelegate.getQuantityText(id, quantity)
     }
 
     override fun getQuantityString(id: Int, quantity: Int): String {
-        setLocale()
-
-        return baseResources.getQuantityString(id, quantity)
+        return resourcesDelegate.getQuantityString(id, quantity)
     }
 
     override fun getQuantityString(id: Int, quantity: Int, vararg formatArgs: Any?): String {
-        setLocale()
-
-        return baseResources.getQuantityString(id, quantity, *formatArgs)
+        return resourcesDelegate.getQuantityString(id, quantity, *formatArgs)
     }
 
     override fun getStringArray(id: Int): Array<String> {
-        setLocale()
-
-        return baseResources.getStringArray(id)
+        return resourcesDelegate.getStringArray(id)
     }
 
     override fun getTextArray(id: Int): Array<CharSequence> {
-        setLocale()
-
-        return baseResources.getTextArray(id)
+        return resourcesDelegate.getTextArray(id)
     }
 
-    @Throws(NotFoundException::class)
-    override fun getAnimation(id: Int): XmlResourceParser = baseResources.getAnimation(id)
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun getFont(id: Int): Typeface {
+        return baseResources.getFont(id)
+    }
 
-    override fun getDisplayMetrics(): DisplayMetrics = baseResources.displayMetrics
+    override fun getIntArray(id: Int): IntArray {
+        return baseResources.getIntArray(id)
+    }
 
-    override fun getDrawableForDensity(id: Int, density: Int): Drawable? =
-            baseResources.getDrawableForDensity(id, density)
+    override fun obtainTypedArray(id: Int): TypedArray {
+        return baseResources.obtainTypedArray(id)
+    }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun getDrawableForDensity(id: Int, density: Int, theme: Theme?): Drawable? =
-            baseResources.getDrawableForDensity(id, density, theme)
+    override fun getDimension(id: Int): Float {
+        return baseResources.getDimension(id)
+    }
 
-    override fun getConfiguration(): Configuration = baseResources.configuration
+    override fun getDimensionPixelOffset(id: Int): Int {
+        return baseResources.getDimensionPixelOffset(id)
+    }
+
+    override fun getDimensionPixelSize(id: Int): Int {
+        return baseResources.getDimensionPixelSize(id)
+    }
+
+    override fun getFraction(id: Int, base: Int, pbase: Int): Float {
+        return baseResources.getFraction(id, base, pbase)
+    }
+
+    override fun getDrawable(id: Int): Drawable {
+        return baseResources.getDrawable(id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun getDrawable(id: Int, theme: Theme?): Drawable {
+        return baseResources.getDrawable(id, theme)
+    }
+
+    override fun getDrawableForDensity(id: Int, density: Int): Drawable? {
+        return baseResources.getDrawableForDensity(id, density)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun getDrawableForDensity(id: Int, density: Int, theme: Theme?): Drawable? {
+        return baseResources.getDrawableForDensity(id, density, theme)
+    }
+
+    override fun getMovie(id: Int): Movie {
+        return baseResources.getMovie(id)
+    }
+
+    override fun getColor(id: Int): Int {
+        return baseResources.getColor(id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun getColor(id: Int, theme: Theme?): Int {
+        return baseResources.getColor(id, theme)
+    }
+
+    override fun getColorStateList(id: Int): ColorStateList {
+        return baseResources.getColorStateList(id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun getColorStateList(id: Int, theme: Theme?): ColorStateList {
+        return baseResources.getColorStateList(id, theme)
+    }
+
+    override fun getBoolean(id: Int): Boolean {
+        return baseResources.getBoolean(id)
+    }
+
+    override fun getInteger(id: Int): Int {
+        return baseResources.getInteger(id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    override fun getFloat(id: Int): Float {
+        return baseResources.getFloat(id)
+    }
+
+    override fun getLayout(id: Int): XmlResourceParser {
+        return baseResources.getLayout(id)
+    }
+
+    override fun getAnimation(id: Int): XmlResourceParser {
+        return baseResources.getAnimation(id)
+    }
+
+    override fun getXml(id: Int): XmlResourceParser {
+        return baseResources.getXml(id)
+    }
+
+    override fun openRawResource(id: Int): InputStream {
+        return baseResources.openRawResource(id)
+    }
+
+    override fun openRawResource(id: Int, value: TypedValue?): InputStream {
+        return baseResources.openRawResource(id, value)
+    }
+
+    override fun openRawResourceFd(id: Int): AssetFileDescriptor {
+        return baseResources.openRawResourceFd(id)
+    }
+
+    override fun getValue(id: Int, outValue: TypedValue?, resolveRefs: Boolean) {
+        baseResources.getValue(id, outValue, resolveRefs)
+    }
+
+    override fun getValue(name: String?, outValue: TypedValue?, resolveRefs: Boolean) {
+        baseResources.getValue(name, outValue, resolveRefs)
+    }
+
+    override fun getValueForDensity(id: Int, density: Int, outValue: TypedValue?, resolveRefs: Boolean) {
+        baseResources.getValueForDensity(id, density, outValue, resolveRefs)
+    }
 
     override fun obtainAttributes(set: AttributeSet?, attrs: IntArray?): TypedArray {
         return baseResources.obtainAttributes(set, attrs)
     }
 
-    @Throws(NotFoundException::class)
-    override fun getDimensionPixelSize(id: Int): Int = baseResources.getDimensionPixelSize(id)
-
-    @Throws(NotFoundException::class)
-    override fun getIntArray(id: Int): IntArray = baseResources.getIntArray(id)
-
-    @Throws(NotFoundException::class)
-    override fun getValue(id: Int, outValue: TypedValue?, resolveRefs: Boolean) {
-        baseResources.getValue(id, outValue, resolveRefs)
+    override fun updateConfiguration(config: Configuration?, metrics: DisplayMetrics?) {
+        baseResources.updateConfiguration(config, metrics)
     }
 
-    @Throws(NotFoundException::class)
-    override fun getValue(name: String?, outValue: TypedValue?, resolveRefs: Boolean) {
-        baseResources.getValue(name, outValue, resolveRefs)
+    override fun getDisplayMetrics(): DisplayMetrics {
+        return baseResources.getDisplayMetrics()
     }
 
-    @Throws(NotFoundException::class)
-    override fun getResourcePackageName(resid: Int): String =
-            baseResources.getResourcePackageName(resid)
+    override fun getConfiguration(): Configuration {
+        return baseResources.getConfiguration()
+    }
 
-    @Throws(NotFoundException::class)
-    override fun openRawResourceFd(id: Int): AssetFileDescriptor =
-            baseResources.openRawResourceFd(id)
+    override fun getIdentifier(name: String?, defType: String?, defPackage: String?): Int {
+        return baseResources.getIdentifier(name, defType, defPackage)
+    }
 
-    @Throws(NotFoundException::class)
-    override fun getDimension(id: Int): Float = baseResources.getDimension(id)
+    override fun getResourceName(resid: Int): String {
+        return baseResources.getResourceName(resid)
+    }
 
-    @Throws(NotFoundException::class)
-    override fun getColorStateList(id: Int): ColorStateList = baseResources.getColorStateList(id)
+    override fun getResourcePackageName(resid: Int): String {
+        return baseResources.getResourcePackageName(resid)
+    }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    @Throws(NotFoundException::class)
-    override fun getColorStateList(id: Int, theme: Theme?): ColorStateList =
-            baseResources.getColorStateList(id, theme)
+    override fun getResourceTypeName(resid: Int): String {
+        return baseResources.getResourceTypeName(resid)
+    }
 
-    @Throws(NotFoundException::class)
-    override fun getBoolean(id: Int): Boolean = baseResources.getBoolean(id)
+    override fun getResourceEntryName(resid: Int): String {
+        return baseResources.getResourceEntryName(resid)
+    }
 
-    override fun getIdentifier(name: String?, defType: String?, defPackage: String?): Int =
-            baseResources.getIdentifier(name, defType, defPackage)
-
-    @Throws(NotFoundException::class)
-    override fun getColor(id: Int): Int = baseResources.getColor(id)
-
-    @TargetApi(Build.VERSION_CODES.M)
-    @Throws(NotFoundException::class)
-    override fun getColor(id: Int, theme: Theme?): Int = baseResources.getColor(id, theme)
-
-    override fun openRawResource(id: Int): InputStream = baseResources.openRawResource(id)
-
-    @Throws(NotFoundException::class)
-    override fun openRawResource(id: Int, value: TypedValue?): InputStream =
-            baseResources.openRawResource(id, value)
-
-    @Throws(NotFoundException::class)
-    override fun getMovie(id: Int): Movie = baseResources.getMovie(id)
-
-    @Throws(NotFoundException::class)
-    override fun getInteger(id: Int): Int = baseResources.getInteger(id)
-
-    @Throws(XmlPullParserException::class, IOException::class)
     override fun parseBundleExtras(parser: XmlResourceParser?, outBundle: Bundle?) {
-        this.baseResources.parseBundleExtras(parser, outBundle)
+        baseResources.parseBundleExtras(parser, outBundle)
     }
 
-    @Throws(NotFoundException::class)
-    override fun getDrawable(id: Int): Drawable = baseResources.getDrawable(id)
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @Throws(NotFoundException::class)
-    override fun getDrawable(id: Int, theme: Theme?): Drawable =
-            baseResources.getDrawable(id, theme)
-
-    @Throws(NotFoundException::class)
-    override fun getResourceTypeName(resid: Int): String = baseResources.getResourceTypeName(resid)
-
-    @Throws(NotFoundException::class)
-    override fun getLayout(id: Int): XmlResourceParser = baseResources.getLayout(id)
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    @Throws(NotFoundException::class)
-    override fun getFont(id: Int): Typeface = baseResources.getFont(id)
-
-    @Throws(NotFoundException::class)
-    override fun getXml(id: Int): XmlResourceParser = baseResources.getXml(id)
-
-    @Throws(NotFoundException::class)
-    override fun getResourceName(resid: Int): String = baseResources.getResourceName(resid)
-
-    @Throws(XmlPullParserException::class)
     override fun parseBundleExtra(tagName: String?, attrs: AttributeSet?, outBundle: Bundle?) {
         baseResources.parseBundleExtra(tagName, attrs, outBundle)
-    }
-
-    @Throws(NotFoundException::class)
-    override fun getDimensionPixelOffset(id: Int): Int = baseResources.getDimensionPixelOffset(id)
-
-    @Throws(NotFoundException::class)
-    override fun getValueForDensity(
-            id: Int,
-            density: Int,
-            outValue: TypedValue?,
-            resolveRefs: Boolean
-    ) {
-        baseResources.getValueForDensity(id, density, outValue, resolveRefs)
-    }
-
-    @Throws(NotFoundException::class)
-    override fun getResourceEntryName(resid: Int): String =
-            baseResources.getResourceEntryName(resid)
-
-    @Throws(NotFoundException::class)
-    override fun getFraction(id: Int, base: Int, pbase: Int): Float =
-            baseResources.getFraction(id, base, pbase)
-
-    private fun setLocale() {
-        if (AppLocale.isInitial) return
-
-        val conf = baseResources.configuration
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            conf.setLocale(AppLocale.currentLocale)
-            baseResources = context.createConfigurationContext(conf).resources
-        } else {
-            conf.locale = AppLocale.currentLocale
-            baseResources.updateConfiguration(conf, baseResources.displayMetrics)
-        }
     }
 }
 
