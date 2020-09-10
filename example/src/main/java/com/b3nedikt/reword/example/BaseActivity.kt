@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import dev.b3nedikt.app_locale.AppLocale
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import dev.b3nedikt.viewpump.ViewPumpContextWrapper
 
 abstract class BaseActivity : AppCompatActivity() {
 
