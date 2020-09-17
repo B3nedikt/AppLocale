@@ -1,1 +1,1 @@
-include ':example', ':app-locale', ':example-java'
+include ':example', ':applocale', ':example-java'

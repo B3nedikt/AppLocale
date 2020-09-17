@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    implementation project(':app-locale')
+    implementation project(':applocale')
 
     implementation deps.appCompat
     implementation deps.constraintLayout
