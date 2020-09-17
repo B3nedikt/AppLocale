@@ -1,1 +1,1 @@
-var moduleSearchIndex = [{"l":"app-locale","url":"index.html"}]
+var moduleSearchIndex = [{"l":"applocale","url":"index.html"}]
