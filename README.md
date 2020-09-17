@@ -1,9 +1,9 @@
-[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=2.0.2) ](https://bintray.com/b3nedikt/applocale/applocale/2.0.2/link)
+[ ![Download](https://api.bintray.com/packages/b3nedikt/applocale/applocale/images/download.svg?version=2.0.3) ](https://bintray.com/b3nedikt/applocale/applocale/2.0.3/link)
 [![Build Status](https://travis-ci.org/B3nedikt/applocale.svg?branch=master)](https://travis-ci.org/B3nedikt/applocale)
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 [![Documentation](https://img.shields.io/badge/docs-documentation-green.svg)](https://b3nedikt.github.io/AppLocale/)
 
-## App Locale 2.0.2
+## App Locale 2.0.3
 
 AppLocale is a android library to update the app language dynamically.
 
@@ -11,7 +11,7 @@ AppLocale is a android library to update the app language dynamically.
 
 ```groovy
 // Manages the Locale used by the app
-implementation 'dev.b3nedikt.applocale:applocale:2.0.2'
+implementation 'dev.b3nedikt.applocale:applocale:2.0.3'
 ```
 
 ### 2. Initialize
