@@ -17,9 +17,6 @@ public class SampleApplication extends Application {
 
         AppLocale.setAppLocaleRepository(new SharedPrefsAppLocaleRepository(this));
 
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(RewordInterceptor.INSTANCE)
-                .build()
-        );
+        ViewPump.init(RewordInterceptor.INSTANCE);
     }
 }

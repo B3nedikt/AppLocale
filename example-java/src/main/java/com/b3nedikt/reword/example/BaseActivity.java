@@ -1,22 +1,26 @@
 package com.b3nedikt.reword.example;
 
-import android.content.Context;
-import android.content.res.Resources;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.app.ViewPumpAppCompatDelegate;
 
 import dev.b3nedikt.app_locale.AppLocale;
-import dev.b3nedikt.viewpump.ViewPumpContextWrapper;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(AppLocale.wrap(newBase)));
-    }
+    private AppCompatDelegate appCompatDelegate = null;
 
+    @NonNull
     @Override
-    public Resources getResources() {
-        return AppLocale.wrap(getBaseContext()).getResources();
+    public AppCompatDelegate getDelegate() {
+        if (appCompatDelegate == null) {
+            appCompatDelegate = new ViewPumpAppCompatDelegate(
+                    super.getDelegate(),
+                    this,
+                    AppLocale::wrap
+            );
+        }
+        return appCompatDelegate;
     }
 }

@@ -42,9 +42,9 @@ ext {
             appCompat       : "androidx.appcompat:appcompat:1.2.0",
             annotation      : "androidx.annotation:annotation:1.0.0",
             material        : "com.google.android.material:material:1.2.0",
-            constraintLayout: "androidx.constraintlayout:constraintlayout:2.0.1",
-            viewPump        : "dev.b3nedikt.viewpump:viewpump:3.0.0",
-            reword          : "dev.b3nedikt.reword:reword:2.0.0",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:2.0.4",
+            viewPump        : "dev.b3nedikt.viewpump:viewpump:4.0.3",
+            reword          : "dev.b3nedikt.reword:reword:3.0.1",
 
             junit           : "junit:junit:4.12",
             kluent          : "org.amshove.kluent:kluent-android:1.59",
