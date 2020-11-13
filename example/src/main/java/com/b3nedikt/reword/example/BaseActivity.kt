@@ -1,18 +1,21 @@
 package com.b3nedikt.reword.example
 
-import android.content.Context
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.ViewPumpAppCompatDelegate
 import dev.b3nedikt.app_locale.AppLocale
-import dev.b3nedikt.viewpump.ViewPumpContextWrapper
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(AppLocale.wrap(newBase)))
+    private val appCompatDelegate: AppCompatDelegate by lazy {
+        ViewPumpAppCompatDelegate(
+                baseDelegate = super.getDelegate(),
+                baseContext = this,
+                wrapContext = { baseContext -> AppLocale.wrap(baseContext) }
+        )
     }
 
-    override fun getResources(): Resources {
-        return AppLocale.wrap(baseContext).resources
+    override fun getDelegate(): AppCompatDelegate {
+        return appCompatDelegate
     }
 }

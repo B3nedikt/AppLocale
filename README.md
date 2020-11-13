@@ -5,42 +5,52 @@
 
 ## App Locale 2.0.3
 
-AppLocale is a android library to update the app language dynamically.
+AppLocale is a android library to change the app language dynamically.
 
-### 1. Add dependency
+### 1. Add dependencies
+
+In addition to appcompat from androidX which you most likely already use,
+the following three dependencies are needed:
 
 ```groovy
 // Manages the Locale used by the app
 implementation 'dev.b3nedikt.applocale:applocale:2.0.3'
+
+// Needed to intercept view inflation
+implementation 'dev.b3nedikt.viewpump:viewpump:4.0.3'
+
+// Allows to update the text of views at runtime without recreating the activity
+implementation 'dev.b3nedikt.reword:reword:3.0.1'
 ```
 
 ### 2. Initialize
 
-Initialize AppLocale in your Application class:
+Initialize ViewPump & Reword in your Application class:
 
 ```kotlin
-// The languages supported by our app, normally the ones we have strings.xml files for
-// in the resources. If you dont set this, it will be assumed the app supports every language
-// set programmatically using this lib.
-AppLocale.supportedLocales = listOf(Locale.ENGLISH, Locale.French)
-
-// Optional: Persist changes to the desiredLocale to sharedPreferences
-AppLocale.appLocaleRepository = SharedPrefsAppLocaleRepository(this)
+// To dynamically update views we need to intercept view inflation and update
+// the text of each view. The libraries ViewPump and reword do exactly that when setup
+// like this:
+ViewPump.init(RewordInterceptor)
 ```
 
-### 2. Add to the base activity
+### 3. Inject into Context
 
-If the app has a base activity, this can go there, otherwise it needs to be added to every activity:
+If you have a BaseActivity you can add this there, otherwise you have to add it to all of your activities:
 
 ```kotlin
 abstract class BaseActivity : AppCompatActivity() {
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(AppLocale.wrap(newBase))
+    private val appCompatDelegate: AppCompatDelegate by lazy {
+        ViewPumpAppCompatDelegate(
+                baseDelegate = super.getDelegate(),
+                baseContext = this,
+                wrapContext = { baseContext -> AppLocale.wrap(baseContext) }
+        )
     }
 
-    override fun getResources(): Resources {
-        return AppLocale.wrap(baseContext).resources
+    override fun getDelegate(): AppCompatDelegate {
+        return appCompatDelegate
     }
 }
 ```
@@ -55,65 +65,7 @@ AppLocale.desiredLocale = Locale.FRENCH
 
 When the activity gets restarted, all texts will be localized using the new Locale.
 
-## Update the app language without restarting the activity
-
-If you want to change the apps Locale without restarting the activity,
-you need to add the following additional dependencies:
-
-```groovy
-// Needed to intercept view inflation
-implementation 'dev.b3nedikt.viewpump:viewpump:3.0.1'
-
-// Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:2.0.2'
-```
-
-Initialize ViewPump & Reword in the application class:
-
-```kotlin
-// To dynamically update views we need to intercept view inflation and update
-// the text of each view. The libraries ViewPump and reword do exactly that when setup
-// like this:
-ViewPump.init(ViewPump.builder()
-        .addInterceptor(RewordInterceptor)
-        .build())
-```
-
-To use ViewPump we need to additionally wrap the context with ViewPump in our base activity:
-
-```kotlin
-abstract class BaseActivity : AppCompatActivity() {
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(AppLocale.wrap(newBase)))
-    }
-
-    override fun getResources(): Resources {
-        return AppLocale.wrap(baseContext).resources
-    }
-}
-```
-
-If you use fragments add this to your base fragment:
-
-```kotlin
-abstract class BaseFragment : Fragment() {
-
-    override fun onResume() {
-        super.onResume()
-
-        ViewPump.setOverwriteContext(AppLocale.wrap(requireContext()))
-    }
-
-    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
-        val wrappedContext = ViewPumpContextWrapper.wrap(AppLocale.wrap(requireContext()))
-        return wrappedContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    }
-}
-```
-
-After setting the new locale you need to call reword
-to update all views which have been inflated from xml:
+Alternativeley you can reload the UI like this:
 
 ```kotlin
 // If we want to update the app language without restarting the activity,
@@ -122,10 +74,8 @@ val rootView = window.decorView.findViewById<ContentFrameLayout>(android.R.id.co
 Reword.reword(rootView)
 ```
 
-If you have changed the texts of views in code, you need to update these
-texts manually of course. Also should you use the application context somewhere to retrieve strings
-and inject it with a DI tool like koin or dagger, I would recommend wrapping it in your
-application class.
+If you use this approach and you changed the texts of views in code, you need to update these
+texts manually of course.
 
 ## App Bundle support
 
@@ -133,7 +83,7 @@ If you use the new android app bundle (aab) format to distribute your app, andro
 will strip out all languages which are not the users devices default language.
 To disable this add this to your build.gradle:
 
-```
+```groovy
 android {
     bundle {
         language {
@@ -146,6 +96,27 @@ android {
 
 Alternatively load the languages dynamically using the playcore library as described in its
 [Documentation](https://developer.android.com/guide/playcore/dynamic-delivery#lang_resources).
+
+## Notes
+
+Should you use the application context somewhere to retrieve strings
+and inject it with a DI tool like koin or dagger, I would recommend wrapping it in your
+application class like this:
+
+```kotlin
+class App : Application() {
+
+    ...
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLocale.wrap(newBase))
+    }
+
+    override fun getResources(): Resources {
+        return AppLocale.wrap(baseContext).resources
+    }
+}
+```
 
 ## License
 
