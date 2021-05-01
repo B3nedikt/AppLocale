@@ -1,8 +1,8 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.b3nedikt.applocale/applocale/badge.svg)](https://maven-badges.herokuapp.com/maven-central/dev.b3nedikt.applocale/applocale)
-[![Build Status](https://travis-ci.org/B3nedikt/applocale.svg?branch=master)](https://travis-ci.org/B3nedikt/applocale)
+[![Build & Test](https://github.com/B3nedikt/AppLocale/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/B3nedikt/AppLocale/actions/workflows/build-and-test.yaml)
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
-[![Documentation](https://img.shields.io/badge/docs-documentation-green.svg)](https://b3nedikt.github.io/AppLocale/)
+[![javadoc](https://javadoc.io/badge2/dev.b3nedikt.applocale/applocale/javadoc.svg)](https://javadoc.io/doc/dev.b3nedikt.applocale/applocale)
 
 ## App Locale 2.0.3
 
