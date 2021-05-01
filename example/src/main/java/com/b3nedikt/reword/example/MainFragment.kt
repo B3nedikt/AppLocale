@@ -6,13 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.widget.ContentFrameLayout
 import androidx.fragment.app.Fragment
 import dev.b3nedikt.app_locale.AppLocale
 import dev.b3nedikt.reword.Reword
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
+
+    private lateinit var spinner: Spinner
+
+    private lateinit var stringArrayTextView: TextView
+    private lateinit var quantityStringTextView: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -20,6 +26,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        spinner = view.findViewById(R.id.spinner)
+
+        stringArrayTextView = view.findViewById(R.id.stringArrayTextView)
+        quantityStringTextView = view.findViewById(R.id.quantityStringTextView)
 
         val localeStrings = AppLocale.supportedLocales.map { it.language + " " + it.country }
         val adapter = ArrayAdapter(requireContext(),

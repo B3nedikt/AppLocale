@@ -1,7 +1,7 @@
 apply plugin: 'jacoco'
 
 jacoco {
-    toolVersion = rootProject.ext.jacoco_version
+    toolVersion = "0.8.6"
 }
 
 tasks.withType(Test) {
@@ -29,6 +29,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     getSourceDirectories().setFrom(files([mainSrc]))
     getClassDirectories().setFrom([debugTree])
     getExecutionData().setFrom(fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+            'jacoco/testDebugUnitTest.exec', 'outputs/code_coverage/debugAndroidTest/connected/*coverage.ec'
     ]))
 }

@@ -1,10 +1,7 @@
 ext {
-    bintrayRepo = 'applocale'
-    bintrayName = 'applocale'
-
     publishedGroupId = 'dev.b3nedikt.applocale'
     artifactId = 'applocale'
-    libraryVersion = '2.0.3'
+    libraryVersion = version
 
     libraryName = 'AppLocale'
     libraryDescription = 'AppLocale is a android library to update the app language dynamically.'
@@ -20,5 +17,6 @@ ext {
     organization = 'b3nedikt.dev'
 }
 
-apply from: 'install.gradle'
-apply from: 'bintray.gradle'
+apply from: 'artifacts.gradle'
+apply from: 'publication.gradle'
+

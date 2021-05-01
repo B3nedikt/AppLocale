@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package dev.b3nedikt.app_locale
 
 import android.content.Context
@@ -189,11 +191,11 @@ internal class AppLocaleResources(
     }
 
     override fun getDisplayMetrics(): DisplayMetrics {
-        return baseResources.getDisplayMetrics()
+        return baseResources.displayMetrics
     }
 
     override fun getConfiguration(): Configuration {
-        return baseResources.getConfiguration()
+        return baseResources.configuration
     }
 
     override fun getIdentifier(name: String?, defType: String?, defPackage: String?): Int {
