@@ -1,4 +1,5 @@
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 def pomConfig = {
     licenses {
@@ -47,5 +48,35 @@ afterEvaluate {
                 }
             }
         }
+
+        repositories {
+            maven {
+                name = "MavenCentral"
+                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username = propertyOrEnv("mavenUsername")
+                    password = propertyOrEnv("mavenPassword")
+                }
+            }
+        }
     }
+
+    signing {
+        def signingKeyId = propertyOrEnv("signingKeyId")
+        def signingKey = propertyOrEnv("signingKey")
+        def signingPassword = propertyOrEnv("signingPassword")
+        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+
+        sign publishing.publications.release
+    }
+}
+
+String propertyOrEnv(propertyName) {
+    Properties properties = new Properties()
+    File file = project.rootProject.file('local.properties')
+    if (file.exists()) {
+        properties.load(file.newDataInputStream())
+        return properties.getProperty(propertyName)
+    }
+    return System.getenv(propertyName)
 }

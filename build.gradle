@@ -1,7 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.4.10'
-    ext.dokka_version = '1.4.0-rc'
-    ext.jacoco_version = '0.8.5'
+    ext.kotlin_version = '1.4.32'
 
     repositories {
         google()
@@ -9,10 +7,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath "org.jacoco:org.jacoco.core:$jacoco_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
     }
 }
 
@@ -32,9 +28,9 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 29
+    compileSdkVersion = 30
     minSdkVersion = 16
-    targetSdkVersion = 29
+    targetSdkVersion = 30
 
     deps = [
             kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -43,13 +39,13 @@ ext {
             annotation      : "androidx.annotation:annotation:1.0.0",
             material        : "com.google.android.material:material:1.2.0",
             constraintLayout: "androidx.constraintlayout:constraintlayout:2.0.4",
-            viewPump        : "dev.b3nedikt.viewpump:viewpump:4.0.3",
-            reword          : "dev.b3nedikt.reword:reword:3.0.1",
+            viewPump        : "dev.b3nedikt.viewpump:viewpump:4.0.7",
+            reword          : "dev.b3nedikt.reword:reword:4.0.1",
 
             junit           : "junit:junit:4.12",
             kluent          : "org.amshove.kluent:kluent-android:1.59",
             mockito         : "org.mockito:mockito-inline:3.0.0",
-            robolectric     : "org.robolectric:robolectric:4.3.1",
+            robolectric     : "org.robolectric:robolectric:4.5.1",
             mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
             testCore        : "androidx.test:core:1.2.0"
     ]
