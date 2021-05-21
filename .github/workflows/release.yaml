@@ -30,8 +30,8 @@ jobs:
     - name: Release
       uses: nexus-actions/release-nexus-staging-repo@v1.1
       with:
-          username: ${{ secrets.SONATYPE_USERNAME }}
-          password: ${{ secrets.SONATYPE_PASSWORD }}
+          username: ${{ secrets.MAVEN_USERNAME }}
+          password: ${{ secrets.MAVEN_PASSWORD }}
           staging_repository_id: ${{ secrets.STAGING_REPOSITORY_ID }}
 
     - name: Read version from gradle.properties
