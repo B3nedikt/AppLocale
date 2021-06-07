@@ -1,0 +1,1 @@
+include(":example", ":applocale", ":example-java")
