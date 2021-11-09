@@ -18,7 +18,7 @@ the following three dependencies are needed:
 implementation 'dev.b3nedikt.applocale:applocale:2.0.3'
 
 // Needed to intercept view inflation
-implementation 'dev.b3nedikt.viewpump:viewpump:4.0.7'
+implementation 'dev.b3nedikt.viewpump:viewpump:4.0.9'
 
 // Allows to update the text of views at runtime without recreating the activity
 implementation 'dev.b3nedikt.reword:reword:4.0.1'
