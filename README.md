@@ -21,7 +21,7 @@ implementation 'dev.b3nedikt.applocale:applocale:2.0.3'
 implementation 'dev.b3nedikt.viewpump:viewpump:4.0.10'
 
 // Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:4.0.1'
+implementation 'dev.b3nedikt.reword:reword:4.0.2'
 ```
 
 ### 2. Initialize
