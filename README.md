@@ -100,24 +100,9 @@ Alternatively load the languages dynamically using the playcore library as descr
 
 ## Notes
 
-Should you use the application context somewhere to retrieve strings
-and inject it with a DI tool like koin or dagger, I would recommend wrapping it in your
-application class like this:
-
-```kotlin
-class App : Application() {
-
-    ...
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(AppLocale.wrap(newBase))
-    }
-
-    override fun getResources(): Resources {
-        return AppLocale.wrap(baseContext).resources
-    }
-}
-```
+Should you use the application context somewhere to retrieve strings and inject it with a DI tool like
+koin or dagger, I would recommend wrapping it in your application class with `Restring.wrap(...)`
+when providing it to your DI tool.
 
 ## License
 
