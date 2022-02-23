@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name="com.b3nedikt.reword.example.MainActivity"
-            android:configChanges="locale" >
+
+        <activity
+            android:name="com.b3nedikt.reword.example.MainActivity"
+            android:configChanges="locale"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
