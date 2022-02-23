@@ -63,7 +63,7 @@ object AppLocale {
 
             return field
         }
-
+        private set
 
     /**
      * The locale which should ideally be used by the app.
