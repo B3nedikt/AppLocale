@@ -7,27 +7,21 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AppConfig.compileSdk)
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        minSdkVersion(AppConfig.minSdk)
-        targetSdkVersion(AppConfig.targetSdk)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        buildTypes {
-            getByName("debug") {
-                isMinifyEnabled = false
-            }
+        debug {
+            isMinifyEnabled = false
         }
-        buildTypes {
-            getByName("release") {
-                isMinifyEnabled = false
-                proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            }
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 
