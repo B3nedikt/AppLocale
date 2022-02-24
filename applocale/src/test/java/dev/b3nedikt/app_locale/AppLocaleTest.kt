@@ -1,6 +1,7 @@
 package dev.b3nedikt.app_locale
 
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import org.amshove.kluent.shouldBe
 import org.junit.Test
@@ -91,7 +92,7 @@ class AppLocaleTest {
         AppLocale.desiredLocale = Locale.GERMAN
 
         // Then the listener should not be triggered
-        verify(listener).onLocaleChanged()
+        verify(listener, never()).onLocaleChanged()
     }
 }
 

@@ -110,7 +110,7 @@ object AppLocale {
      */
     @JvmStatic
     fun removeLocaleChangedListener(listener: LocaleChangedListener) {
-        listeners.add(listener)
+        listeners.remove(listener)
     }
 
     /**
