@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 [![javadoc](https://javadoc.io/badge2/dev.b3nedikt.applocale/applocale/javadoc.svg)](https://javadoc.io/doc/dev.b3nedikt.applocale/applocale)
 
-## App Locale 2.0.3
+## App Locale 3.0.0
 
 AppLocale is a android library to change the app language dynamically.
 
@@ -15,7 +15,7 @@ the following three dependencies are needed:
 
 ```groovy
 // Manages the Locale used by the app
-implementation 'dev.b3nedikt.applocale:applocale:2.0.3'
+implementation 'dev.b3nedikt.applocale:applocale:3.0.0'
 
 // Needed to intercept view inflation
 implementation 'dev.b3nedikt.viewpump:viewpump:4.0.10'
