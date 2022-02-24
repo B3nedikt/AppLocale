@@ -10,7 +10,6 @@ import org.robolectric.annotation.Config
 import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.P])
 class SharedPrefsAppLocaleRepositoryTest {
 
     @Test
