@@ -1,7 +1,6 @@
 package com.b3nedikt.reword.example
 
 import android.app.Application
-import android.content.Context
 import android.content.res.Resources
 import dev.b3nedikt.app_locale.AppLocale
 import dev.b3nedikt.app_locale.SharedPrefsAppLocaleRepository
@@ -23,12 +22,8 @@ class SampleApplication : Application() {
         ViewPump.init(RewordInterceptor)
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(AppLocale.wrap(newBase))
-    }
-
     override fun getResources(): Resources {
-        return AppLocale.wrap(baseContext).resources
+        return AppLocale.wrapResources(applicationContext, super.getResources())
     }
 
     private companion object {

@@ -2,6 +2,7 @@ package dev.b3nedikt.app_locale
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.res.Resources
 import java.util.*
 
 
@@ -122,5 +123,20 @@ object AppLocale {
     fun wrap(context: Context): Context {
         if (context.resources is AppLocaleResources) return context
         return AppLocaleContextWrapper(context)
+    }
+
+    /**
+     * Creates a new instance of [AppLocaleResources] based on the provided default resources. If
+     * the provided [baseResources] are already wrapped, they will be returned unchanged by this
+     * method.
+     *
+     * @param context the context used by the newly created [AppLocaleResources]
+     * @param baseResources the resources to be wrapped, these should come from the super class of
+     * the provided [context]
+     */
+    @JvmStatic
+    fun wrapResources(context: Context, baseResources: Resources): Resources {
+        if (baseResources is AppLocaleResources) return baseResources
+        return AppLocaleResources(baseResources, context)
     }
 }
