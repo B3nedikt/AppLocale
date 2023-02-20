@@ -11,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +29,8 @@ android {
             isIncludeAndroidResources = true
         }
     }
+
+    namespace = "dev.b3nedikt.app_locale"
 }
 
 dependencies {
