@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/B3nedikt/applocale/branch/master/graph/badge.svg)](https://codecov.io/gh/B3nedikt/applocale)
 [![javadoc](https://javadoc.io/badge2/dev.b3nedikt.applocale/applocale/javadoc.svg)](https://javadoc.io/doc/dev.b3nedikt.applocale/applocale)
 
-## App Locale 3.0.0
+## App Locale 3.1.0
 
 AppLocale is a android library to change the app language dynamically.
 
