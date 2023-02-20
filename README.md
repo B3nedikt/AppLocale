@@ -26,7 +26,7 @@ implementation 'dev.b3nedikt.reword:reword:4.0.4'
 
 ### 2. Initialize
 
-Initialize ViewPump & Reword in your Application class:
+Initialize ViewPump & Reword in your `Application` class:
 
 ```kotlin
 // To dynamically update views we need to intercept view inflation and update
@@ -37,8 +37,8 @@ ViewPump.init(RewordInterceptor)
 
 ### 3. Inject into Context
 
-If you use your application context to retrieve string resources add the following to your
-application class:
+If you use your application `Context` to retrieve string resources add the following to your
+`Application` class:
 
 ```kotlin
 class SampleApplication : Application() {
@@ -111,12 +111,6 @@ android {
 
 Alternatively load the languages dynamically using the playcore library as described in its
 [Documentation](https://developer.android.com/guide/playcore/dynamic-delivery#lang_resources).
-
-## Notes
-
-Should you use the application context somewhere to retrieve strings and inject it with a DI tool like
-koin or dagger, I would recommend wrapping it in your application class with `Restring.wrap(...)`
-when providing it to your DI tool.
 
 ## License
 
