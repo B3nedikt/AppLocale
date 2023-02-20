@@ -15,13 +15,13 @@ the following three dependencies are needed:
 
 ```groovy
 // Manages the Locale used by the app
-implementation 'dev.b3nedikt.applocale:applocale:3.0.0'
+implementation 'dev.b3nedikt.applocale:applocale:3.1.0'
 
 // Needed to intercept view inflation
 implementation 'dev.b3nedikt.viewpump:viewpump:4.0.10'
 
 // Allows to update the text of views at runtime without recreating the activity
-implementation 'dev.b3nedikt.reword:reword:4.0.3'
+implementation 'dev.b3nedikt.reword:reword:4.0.4'
 ```
 
 ### 2. Initialize
@@ -36,6 +36,20 @@ ViewPump.init(RewordInterceptor)
 ```
 
 ### 3. Inject into Context
+
+If you use your application context to retrieve string resources add the following to your
+application class:
+
+```kotlin
+class SampleApplication : Application() {
+
+    ...
+
+    override fun getResources(): Resources {
+        return AppLocale.wrapResources(applicationContext, super.getResources())
+    }
+}
+```
 
 If you have a BaseActivity you can add this there, otherwise you have to add it to all of your activities:
 
