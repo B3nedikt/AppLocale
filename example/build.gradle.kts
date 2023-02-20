@@ -21,6 +21,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+    namespace = "com.b3nedikt.reword.example"
 }
 
 dependencies {
@@ -28,7 +29,6 @@ dependencies {
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.constraintLayout)
-    implementation(Dependencies.kotlin)
     implementation(Dependencies.viewPump)
     implementation(Dependencies.reword)
 }
