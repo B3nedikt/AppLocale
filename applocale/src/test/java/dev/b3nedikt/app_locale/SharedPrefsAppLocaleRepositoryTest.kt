@@ -1,12 +1,11 @@
 package dev.b3nedikt.app_locale
 
-import android.os.Build
 import androidx.test.core.app.ApplicationProvider
 import org.amshove.kluent.shouldBe
+import org.amshove.kluent.shouldBeEqualTo
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
@@ -23,7 +22,7 @@ class SharedPrefsAppLocaleRepositoryTest {
 
         // Then the desired Locale should also be German, when we recreate the repository
         val repository2 = SharedPrefsAppLocaleRepository(ApplicationProvider.getApplicationContext())
-        repository2.desiredLocale shouldBe Locale.GERMAN
+        repository2.desiredLocale shouldBeEqualTo Locale.GERMAN
     }
 
     @Test

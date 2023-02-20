@@ -5,7 +5,7 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.Test
 import org.robolectric.annotation.Config
 
-@Config(sdk = [Build.VERSION_CODES.JELLY_BEAN, Build.VERSION_CODES.S])
+@Config(sdk = [Build.VERSION_CODES.JELLY_BEAN, Build.VERSION_CODES.TIRAMISU])
 class LocaleUtilTest {
 
     @Test
