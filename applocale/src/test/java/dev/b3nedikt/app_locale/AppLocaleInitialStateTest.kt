@@ -7,8 +7,6 @@ import org.junit.runner.RunWith
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.robolectric.RobolectricTestRunner
-import java.lang.reflect.Field
-import java.lang.reflect.Modifier
 import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
@@ -47,23 +45,18 @@ class AppLocaleInitialStateTest {
     @Before
     fun resetAppLocale() {
         setAppLocaleField("isInitial", true)
-        
+
         setAppLocaleField("appLocaleRepository", null)
-        
+
         setAppLocaleField("supportedLocales", listOf<Locale>())
         setAppLocaleField("currentLocale", Locale.ROOT)
         setAppLocaleField("desiredLocale", Locale.ROOT)
     }
 
     private fun setAppLocaleField(name: String, newValue: Any?) {
-        AppLocale.javaClass.getDeclaredField(name).setFinalStatic(newValue)
-    }
-
-    private fun Field.setFinalStatic(newValue: Any?) {
-        isAccessible = true
-        val modifiersField: Field = Field::class.java.getDeclaredField("modifiers")
-        modifiersField.isAccessible = true
-        modifiersField.setInt(this, modifiers and Modifier.FINAL.inv())
-        set(null, newValue)
+        AppLocale::class.java.getDeclaredField(name).apply {
+            isAccessible = true
+            set(AppLocale, newValue)
+        }
     }
 }
